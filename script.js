@@ -117,6 +117,10 @@ gameOverAudio.load();
 const gunShotAudio = new Audio('resources/GunShot.mp3');
 gunShotAudio.load();
 
+// Preload Levelup audio
+const levelUpAudio = new Audio('resources/Levelup.mp3');
+levelUpAudio.load();
+
 // Initialize the game when the window loads
 window.onload = function() {
     var final = ""; // HTML string for word list
@@ -174,6 +178,11 @@ function setColors() {
 
 // Function to change the game level
 function changeLevel(newLevel) {
+    // Play the level-up sound only if it's not game over
+    if (newLevel > 0) {
+        levelUpAudio.play();
+    }
+
     input.value = ""; // Clear input field
     // Reset animations and styles
     document.getElementById("q1").classList.add("q1c");
